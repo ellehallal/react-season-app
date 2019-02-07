@@ -22,19 +22,31 @@ export default class App extends React.Component {
       function(err) {
         console.log(err);
         this.setState({
-          errorMessage: "Unable to get location"
+          errorMessage: "Error: Unable to get location"
         });
       }.bind(this)
     );
   }
 
   render() {
+    if (this.state.errorMessage && !this.state.lat && !this.state.lon) {
+      return (
+        <React.Fragment>
+          <p data-test="error-message">{this.state.errorMessage}</p>
+        </React.Fragment>
+      );
+    }
+
+    if (this.state.lat && this.state.lon && !this.state.errorMessage) {
+      return (
+        <React.Fragment>
+          <SeasonDisplay lat={this.state.lat} lon={this.state.lon} />
+        </React.Fragment>
+      );
+    }
     return (
       <div className="App">
-        <p data-test="latitude">Latitude: {this.state.lat}</p>
-        <p data-test="longitude">Longitude: {this.state.lon}</p>
-        <p data-test="error-message">{this.state.errorMessage}</p>
-        <SeasonDisplay />
+        <p data-test="loading">Loading ...</p>
       </div>
     );
   }

@@ -12,11 +12,6 @@ const mockGeolocation = {
 
 global.navigator.geolocation = mockGeolocation;
 
-let wrapper;
-beforeEach(() => {
-  wrapper = shallow(<App />);
-});
-
 const findByTestAttr = (wrapper, val) => {
   return wrapper.find(`[data-test='${val}']`);
 };
@@ -30,18 +25,4 @@ test("componentDidMount", () => {
   const wrapper = mount(<App />);
   wrapper.instance().componentDidMount();
   expect(spy).toHaveBeenCalled();
-
-  // const instance = wrapper.instance();
-  // instance.componentDidMount();
-  // expect(instance.componentDidMount().ca).toBe(true);
 });
-
-// test("displays the longitude", () => {
-//   const longitude = findByTestAttr(wrapper, "longitude");
-//   expect(longitude.text()).toContain(".");
-// });
-
-// test("displays the latitude", () => {
-//   const latitude = findByTestAttr(wrapper, "latitude");
-//   expect(latitude.text()).toContain(".");
-// });
