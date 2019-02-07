@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React from "react";
+import SeasonDisplay from "./components/SeasonDisplay";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      test
-      </div>
-    );
-  }
-}
+const App = () => {
+  window.navigator.geolocation.getCurrentPosition(
+    position => console.log(position),
+    err => console.log(err)
+  );
+
+  return (
+    <div className="App">
+      <SeasonDisplay />
+    </div>
+  );
+};
 
 export default App;

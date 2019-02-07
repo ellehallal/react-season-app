@@ -6,6 +6,6 @@ export default class SeasonDisplay extends React.Component {
     this.state = {};
   }
   render() {
-    return <div>hi</div>;
+    return <div>Hi, I am season display</div>;
   }
 }
