@@ -6,7 +6,6 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       lat: null,
-      long: null,
       errorMessage: ""
     };
   }
@@ -15,8 +14,7 @@ export default class App extends React.Component {
     navigator.geolocation.getCurrentPosition(
       function(location) {
         this.setState({
-          lat: location.coords.latitude,
-          lon: location.coords.longitude
+          lat: location.coords.latitude
         });
       }.bind(this),
       function(err) {
@@ -29,7 +27,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.errorMessage && !this.state.lat && !this.state.lon) {
+    if (this.state.errorMessage && !this.state.lat) {
       return (
         <React.Fragment>
           <p data-test="error-message">{this.state.errorMessage}</p>
@@ -37,10 +35,10 @@ export default class App extends React.Component {
       );
     }
 
-    if (this.state.lat && this.state.lon && !this.state.errorMessage) {
+    if (this.state.lat && !this.state.errorMessage) {
       return (
         <React.Fragment>
-          <SeasonDisplay lat={this.state.lat} lon={this.state.lon} />
+          <SeasonDisplay lat={this.state.lat} />
         </React.Fragment>
       );
     }
