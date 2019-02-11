@@ -27,3 +27,31 @@ test("displays winter if in northern hemisphere", () => {
   const whatSeason = findByTestAttr(wrapper, "what-season");
   expect(whatSeason.text()).toContain("summer");
 });
+
+test("displays 'it's hot' if season is summer", () => {
+  getSeason(-33, 10);
+  const wrapper = shallow(<SeasonDisplay />);
+  const whatSeason = findByTestAttr(wrapper, "what-season");
+  expect(whatSeason.text()).toContain("summer");
+});
+
+test("displays 'it's chilly' if season is winter", () => {
+  getSeason(33, 10);
+  const wrapper = shallow(<SeasonDisplay />);
+  const whatSeason = findByTestAttr(wrapper, "what-season");
+  expect(whatSeason.text()).toContain("summer");
+});
+
+test("displays a sun icon if season is summer", () => {
+  getSeason(-33, 10);
+  const wrapper = shallow(<SeasonDisplay />);
+  const showIcon = findByTestAttr(wrapper, "display-icon");
+  expect(showIcon.hasClass("sun")).toBeTruthy();
+});
+
+test("displays a snowflake icon if season is winter", () => {
+  getSeason(33, 10);
+  const wrapper = shallow(<SeasonDisplay />);
+  const showIcon = findByTestAttr(wrapper, "display-icon");
+  expect(showIcon.hasClass("snowflake")).toBeTruthy();
+});
