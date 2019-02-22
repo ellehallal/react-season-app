@@ -1,6 +1,7 @@
 import React from "react";
 import SeasonDisplay from "./components/SeasonDisplay";
 import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorMessage from "./components/ErrorMessage";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
       function (err) {
         console.log(err);
         this.setState({
-          errorMessage: "Error: Unable to get location"
+          errorMessage: "Unable to get location"
         });
       }.bind(this)
     );
@@ -31,7 +32,8 @@ export default class App extends React.Component {
     if (this.state.errorMessage && !this.state.lat) {
       return (
         <React.Fragment>
-          <p data-test="error-message">{this.state.errorMessage}</p>
+          <p data-test="error-message"></p>
+          <ErrorMessage message={this.state.errorMessage} />
         </React.Fragment>
       );
     }
