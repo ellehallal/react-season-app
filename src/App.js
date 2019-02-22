@@ -28,7 +28,7 @@ export default class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return (
         <React.Fragment>
@@ -48,5 +48,13 @@ export default class App extends React.Component {
     return (
       <LoadingSpinner message="Please accept location request" />
     );
+  }
+
+  render() {
+    return (
+      <div className="app">
+        {this.renderContent()}
+      </div>
+    )
   }
 }
