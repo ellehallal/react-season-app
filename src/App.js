@@ -1,5 +1,6 @@
 import React from "react";
 import SeasonDisplay from "./components/SeasonDisplay";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,12 +13,12 @@ export default class App extends React.Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      function(location) {
+      function (location) {
         this.setState({
           lat: location.coords.latitude
         });
       }.bind(this),
-      function(err) {
+      function (err) {
         console.log(err);
         this.setState({
           errorMessage: "Error: Unable to get location"
@@ -43,9 +44,7 @@ export default class App extends React.Component {
       );
     }
     return (
-      <div className="App">
-        <p data-test="loading">Loading ...</p>
-      </div>
+      <LoadingSpinner />
     );
   }
 }
