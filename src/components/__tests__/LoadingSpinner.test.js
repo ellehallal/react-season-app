@@ -9,7 +9,7 @@ test("renders without crashing", () => {
     shallow(<LoadingSpinner />);
 });
 
-test("renders with Loading text", () => {
-    const wrapper = shallow(<LoadingSpinner />);
-    expect(wrapper.text()).toContain('Loading')
+test("renders with message prop", () => {
+    const wrapper = shallow(<LoadingSpinner message="Please accept location request" />);
+    expect(wrapper.text()).toContain('location')
 });

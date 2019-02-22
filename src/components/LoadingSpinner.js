@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = (props) => {
     return (
         <div className="ui active inverted dimmer">
             <div className="ui big text loader">
-                Loading...
-                </div>
+                {props.message}
+            </div>
         </div>
     );
 }

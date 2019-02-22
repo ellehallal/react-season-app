@@ -46,7 +46,7 @@ export default class App extends React.Component {
       );
     }
     return (
-      <LoadingSpinner />
+      <LoadingSpinner message="Please accept location request" />
     );
   }
 }
